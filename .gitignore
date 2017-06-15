@@ -1,0 +1,11 @@
+# Eclipse
+bin/
+.settings/
+.classpath
+.project
+
+# Node
+node_modules/
+
+# Apple
+.DS_Store
