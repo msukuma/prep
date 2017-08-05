@@ -1,5 +1,7 @@
 package util;
 
+import java.util.Arrays;
+
 import dataStructures.LinkedList;
 
 public class Printer {
@@ -10,6 +12,14 @@ public class Printer {
 	public static void puts(Object obj, int seperatorLength){
 		System.out.println(obj);
 		seperator(seperatorLength);
+	}
+	
+	public static  void printMatrix(int[][] m){
+		for (int i = 0; i < m.length; i++) {
+			System.out.println(Arrays.toString(m[i]));
+		}
+		
+		seperator(m.length * 5);
 	}
 
 	public static void print(int[] items, int size){

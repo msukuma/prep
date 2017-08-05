@@ -79,4 +79,5 @@ public class BinarySearchTree {
 	public boolean contains(int value){
 		return root.contains(value);
 	}
+	
 }

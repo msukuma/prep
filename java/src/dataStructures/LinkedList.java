@@ -1,17 +1,15 @@
 package dataStructures;
 
-import util.Printer;
-
 public class LinkedList<T> {
 	public static class Node<T> {
 		private T value;
 		private Node<T> previous;
 		private Node<T> next;
 
-		public Node(T value){
+		public Node(T value) {
 			this.value = value;
 		}
-
+		
 		public T getValue(){
 			return value;
 		}
@@ -59,9 +57,9 @@ public class LinkedList<T> {
 		}
 	}
 
-	private Node<T> first;
-	private Node<T> last;
-	private int size;
+	protected Node<T> first;
+	protected Node<T> last;
+	protected int size;
 
 	public LinkedList(){
 		size = 0;
@@ -81,16 +79,31 @@ public class LinkedList<T> {
 
 		return first.getValue();
 	}
+	
+	public Node<T> getFirstNode() throws IllegalStateException {
+		if(isEmpty()) throw new IllegalStateException();
+
+		return first;
+	}
 
 	public T getLast() throws IllegalStateException {
 		if(isEmpty()) throw new IllegalStateException();
 
 		return last.getValue();
 	}
+	
+	public Node<T> getLastNode() throws IllegalStateException {
+		if(isEmpty()) throw new IllegalStateException();
+
+		return last;
+	}
 
 	public void add(T value){
-		Node<T> node = new Node<T>(value);
-
+		addNode(new Node<T>(value));
+		
+	}
+	
+	public void addNode(Node<T> node){
 		if (size == 0) {
 			first = node;
 		}
@@ -104,12 +117,11 @@ public class LinkedList<T> {
 	}
 	
 	public void addFirst(T value){
-		Node<T> node = new Node<T>(value);
-
+		addNodeFirst(new Node<T>(value));
+	}
+	
+	public void addNodeFirst(Node<T> node){
 		if (!isEmpty()) {			
-			Printer.puts(node);
-			Printer.puts(first);
-			
 			first.setPrevious(node);
 			node.setNext(first);
 		}
@@ -120,6 +132,10 @@ public class LinkedList<T> {
 	
 	public void addLast(T value){
 		add(value);
+	}
+	
+	public void addNodeLast(Node<T> node){
+		addNode(node);
 	}
 	
 	public void addAll(T...args){
@@ -142,24 +158,34 @@ public class LinkedList<T> {
 		}
 	}
 	
-	public void print(){
-		System.out.print("[");
+	public String toString (){
+		String s = "[";
 		
 		if(size > 0){
 			Node<T> node = first;
 			
 			while(node.hasNext()){
-				System.out.print(node.getValue() + ", ");
+				s += node.getValue() + ", ";
 				node = node.getNext();
 			}
 			
-			System.out.print(node.getValue());
+			s += node.getValue();
 		}
 		
-		System.out.println("]");
+		s += "]";
+		
+		return s;
+	}
+	
+	public void print(){
+		System.out.println(toString());
 	}
 	
 	public static void main(String[] args) {
+		class Hello{
+			
+		}
+	
 		LinkedList<Integer> l = new LinkedList<Integer>();
 		
 		l.addAll(1,2,3,4,5,6);
@@ -171,6 +197,7 @@ public class LinkedList<T> {
 		l.print();
 		l.removeFirst();
 		l.print();
+		
 	}
 
 }
