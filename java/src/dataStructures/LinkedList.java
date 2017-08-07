@@ -182,10 +182,6 @@ public class LinkedList<T> {
 	}
 	
 	public static void main(String[] args) {
-		class Hello{
-			
-		}
-	
 		LinkedList<Integer> l = new LinkedList<Integer>();
 		
 		l.addAll(1,2,3,4,5,6);
