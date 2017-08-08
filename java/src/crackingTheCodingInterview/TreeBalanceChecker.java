@@ -16,6 +16,12 @@ public class TreeBalanceChecker {
 		}
 	}
 	
+	private static int depth2(Tree t){
+		if(t == null) return 0;
+		
+		return Math.max(depth2(t.getLeft()), depth2(t.getRight()));
+	}
+	
 	private static  int depth(Tree t, Counter dc){
 		Counter lc = null;
 		Counter rc = null;

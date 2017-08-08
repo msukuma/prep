@@ -23,24 +23,23 @@ public class BinarySearchTreeIdentifier {
 	public static void main(String[] args) {
 		class MyTree<T> implements Tree<T>{
 			T value;
-			MyTree left;
-			MyTree right;
+			MyTree<T> left;
+			MyTree<T> right;
 			
 			public MyTree(T value){
 				this.value = value;
 			}
 
 			@Override
-			public Tree getLeft() {
+			public Tree<T> getLeft() {
 				return left;
 			}
 
 			@Override
-			public Tree getRight() {
+			public Tree<T> getRight() {
 				return right;
 			}
 
-			@SuppressWarnings("unchecked")
 			@Override
 			public void add(T value) {
 				if(left == null){
@@ -55,6 +54,7 @@ public class BinarySearchTreeIdentifier {
 				
 			}
 			
+			@SuppressWarnings("unchecked")
 			public void addAll(T ...args){
 				for (T value : args) {
 					add(value);
