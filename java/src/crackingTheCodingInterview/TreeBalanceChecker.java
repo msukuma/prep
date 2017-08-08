@@ -51,13 +51,13 @@ public class TreeBalanceChecker {
 	}
 	
 	public static void main(String[] args) {
-		BinarySearchTree bst;
+		BinarySearchTree<Integer> bst;
 	
-		bst = new BinarySearchTree(5);
+		bst = new BinarySearchTree<Integer>(5);
 		bst.addAll(1,6,8,9,10);
 		System.out.println(isBalanced(bst));
 
-		bst = new BinarySearchTree(5);
+		bst = new BinarySearchTree<Integer>(5);
 		bst.addAll(1,6);
 		System.out.println(isBalanced(bst));
 	}

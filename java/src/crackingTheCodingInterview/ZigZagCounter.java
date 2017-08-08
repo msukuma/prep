@@ -39,7 +39,7 @@ public class ZigZagCounter {
 	private static int countZigZag(Tree t, Direction d, Counter c){
 		Counter leftZigZagCounter =  null;
 		Counter rightZigZagCounter = null;
-		System.out.println("entry t:" + ((BinarySearchTree) t).getValue() + " d: "+ d + " c: " + c.getCount());
+//		System.out.println("entry t:" + ((BinarySearchTree) t).getValue() + " d: "+ d + " c: " + c.getCount());
 		
 		if (t.getLeft() != null){ 
 			leftZigZagCounter = new Counter();
@@ -82,7 +82,7 @@ public class ZigZagCounter {
 			c.incrementBy(rightZigZagCounter.getCount());
 		}
 		
-		System.out.println("exit t:" + ((BinarySearchTree) t).getValue() + " d: "+ d + " c: " + c.getCount());
+//		System.out.println("exit t:" + ((BinarySearchTree) t).getValue() + " d: "+ d + " c: " + c.getCount());
 		return c.getCount();
 	}
 	public static int longestZigZag(Tree tree) {

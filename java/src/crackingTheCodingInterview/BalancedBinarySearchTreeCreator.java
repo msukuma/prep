@@ -4,15 +4,15 @@ import dataStructures.BinarySearchTree;
 import dataStructures.Tree;
 
 public class BalancedBinarySearchTreeCreator {
-	public static Tree create(int[] array) {
-		BinarySearchTree bst;
+	public static BinarySearchTree<Integer> create(int[] array) {
+		BinarySearchTree<Integer> bst;
 		
 		int mid = array.length / 2;
 		int l = mid;
 		int h = mid;
 		int step = array.length > 3 ? 2 : 1;
 		
-		bst = new BinarySearchTree(array[l]);
+		bst = new BinarySearchTree<Integer>(array[l]);
 		
 		while(l - step >= 0){
 			bst.add(array[l - step]);

@@ -1,6 +1,6 @@
 package dataStructures;
 
-public class BinarySearchTree implements Tree{
+public class BinarySearchTree<T> implements Tree<T>{
 	public static class DepthCounter{
 		private int c;
 		
@@ -32,22 +32,22 @@ public class BinarySearchTree implements Tree{
 			c -= change;
 		}
 	}
-	private int value;
-	private BinarySearchTree right;
-	private BinarySearchTree left;
-	private BinarySearchTree parent;
+	private T value;
+	private BinarySearchTree<T> right;
+	private BinarySearchTree<T> left;
+	private BinarySearchTree<T> parent;
 
-	public BinarySearchTree(int value){
+	public BinarySearchTree(T value){
 		this.value = value;
 	}
 	
 	@Override
-	public Tree getLeft() {
+	public Tree<T> getLeft() {
 		return left;
 	}
 
 	@Override
-	public Tree getRight() {
+	public Tree<T> getRight() {
 		return right;
 	}
 
@@ -63,25 +63,30 @@ public class BinarySearchTree implements Tree{
 		return parent != null;
 	}
 
-	public int getValue(){
+	public T getValue(){
 		return value;
 	}
 
-	public void setValue(int value){
+	public void setValue(T value){
 		this.value = value;
 	}
 	
-	private void setParent(BinarySearchTree parent){
+	private void setParent(BinarySearchTree<T> parent){
 		this.parent = parent;
 	}
+	
+	@SuppressWarnings("unchecked")
+	private boolean greaterThan(T value){
+		return ((Comparable<T>) this.value).compareTo(value) > 0;
+	}
 
-	public void add(int value){
-		if (this.value > value) {
+	public void add(T value){
+		if (greaterThan(value)) {
 			if(hasLeft()){
 				left.add(value);
 			}
 			else {
-				left = new BinarySearchTree(value);
+				left = new BinarySearchTree<T>(value);
 				left.setParent(this);
 			}
 		}
@@ -90,24 +95,25 @@ public class BinarySearchTree implements Tree{
 				right.add(value);
 			}
 			else {
-				right = new BinarySearchTree(value); 
+				right = new BinarySearchTree<T>(value); 
 				right.setParent(this);
 			}
 		}
 
 	}
 	
-	public void addAll(int ...args){
-		for (int i : args) {
+	@SuppressWarnings("unchecked")
+	public void addAll(T ...args){
+		for (T i : args) {
 			add(i);
 		}
 	}
 	
-	public boolean contains(int value){
+	public boolean contains(T value){
 		if(this.value == value){
 			return true;
 		}
-		else if (this.value > value) {
+		else if (greaterThan(value)) {
 			if(hasLeft()){
 				return left.contains(value);
 			}
@@ -173,8 +179,9 @@ public class BinarySearchTree implements Tree{
 	}
 	
 	public static void main(String[] args) {
-		BinarySearchTree bst = new BinarySearchTree(5);
+		BinarySearchTree<Integer> bst = new BinarySearchTree<Integer>(5);
 		bst.addAll(1,6,8,9,3,2,0,4,10);
+		System.out.println(bst);
 		System.out.println(bst.depth());
 	}
 }
